@@ -1,0 +1,17 @@
+{
+    "name": "yepjs",
+    "version": "1.1.0",
+    "description": "一个仿后端'同步依赖'的模块框架。",
+    "author": "Kyle Huang",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/kylehuangfff/yepjs.git"
+    },
+    "devDependencies": {},
+    "dependencies": {
+        "gulp": "^3.9.1",
+        "gulp-rename": "^1.2.2",
+        "gulp-uglify": "^3.0.0",
+        "pump": "^3.0.0"
+    }
+}
