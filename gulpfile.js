@@ -7,7 +7,7 @@ let rename = require('gulp-rename');
 
 // 入口程序
 gulp.task('default', ()=>{
-    gulp.watch(paths.js.src, ['jsmin']);
+    gulp.watch(['./src/*.js'], ['jsmin']);
     gulp.start('jsmin');
 });
 
