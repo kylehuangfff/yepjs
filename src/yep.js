@@ -603,11 +603,9 @@
      * 示例2：加载MyProject.Logic命名空间下的所有模块
      * yepjs.require("MyProject.Logic.*");
      * 
-     * 
-     * 示例3：如果某些第三方模块，存在其他依赖，则需要同时传入依赖项
-     * 
+     * 示例3：如果某些第三方模块，存在其他依赖，则需指定模块加载顺序
      * // jqueryUI模块，依赖于jquery，系统会先加载完jquery后，再加载jqueryUI
-     * yepjs.require("jqueryUI", ["jquery"]);
+     * yepjs.require(["jquery", "jqueryUI"]);
      * 
      * // 以下是错误示例，jqueryUI依赖于jquery，但是jquery不一定会在jqueryUI执行之前加载完
      * yepjs.require("jquery");
