@@ -69,12 +69,8 @@ yepjs.config({
 ```
 还可以通过设置`基础库`的data-path属性，来手动指定模块目录。
 ```
-// 设置data-path属性为`基础库`的上一级路径，此时data-config所指定的配置文件路径也发生了变化
-<script src="lib/yep.js" data-path="../" data-config="config.js"></script>
-```
-```
 // 设置data-path属性为项目的根目录
-<script src="lib/yep.js" data-path="/${root}/" data-config="config.js"></script>
+<script src="lib/yep.js" data-path="/${root}/js/" data-config="config.js"></script>
 ```
 此时本地模块路径的设置发生了变化
 ```javascript
