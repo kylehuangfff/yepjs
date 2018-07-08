@@ -19,7 +19,7 @@
     }
 
     function isObject(arg) {
-        return Object.prototype.toString.call(arg) === "[object Object]" && arg !== null;
+        return Object.prototype.toString.call(arg) === "[object Object]";
     }
 
     function isFunction(arg) {
