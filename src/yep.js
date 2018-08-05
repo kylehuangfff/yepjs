@@ -61,7 +61,7 @@
             mainLoader.wait(fn);
         };
 
-    yepjs.version = '1.1.0';
+    yepjs.version = '1.2.0';
 
     yepjs.isArray = isArray;
     yepjs.isString = isString;
