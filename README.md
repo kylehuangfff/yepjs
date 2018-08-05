@@ -4,7 +4,8 @@ yepjs是一个超小型的js分层模块化框架，gzip压缩后只有3KB，具
 1. 基于命名空间的组织方式，开发者能快速搭建一个层次明确、容易扩展的业务架构。
 2. 模块依赖管理，单一模块仅需要声明自身所依赖的模块，而无需关心这些模块对其他模块的依赖。
 3. 仿后端语言的“同步依赖”写法，让你可以把依赖写在每个模块的顶部。
-4. 核心api仅有4个，只需要5分钟即可上手使用。
+4. 支持文件预加载与缓执行。
+5. 核心api仅有4个，只需要5分钟即可上手使用。
 
 ## 适用场景
 
@@ -195,16 +196,16 @@ yepjs.define('test4', {
     }
 });
 ```
-`错误原因：`require会最大程度的并行下载所有依赖模块，其加载方式是`无序`的，哪个模块先加载完是不确定的，如果 jqUI.main先于jQuery加载完成，就会抛出错误，因为此时jQuery还未加载完。
+`错误原因：`require会最大程度的并行下载，并立即执行先下载完成的模块，由于模块的执行顺序不确定，如果 jqUI.main先于jQuery加载完成，就会抛出错误，因为此时jQuery还未加载完。
 
-为了处理这个问题，框架提供了`顺序加载模块`的特性。
+为了处理这个问题，框架提供了`顺序执行模块`的特性，通过使用数组参数，框架会并行下载所有依赖模块，但是不立即执行。直到模块全部下载完成后，才按顺序执行。
 
 如下所示：
 ```javascript
 // demo/logic/test4.js
 
 // 在模块最顶部声明依赖
-yepjs.require(['jquery', 'jqUI.uicss', 'jqUI.main']);  // 三个模块会按顺序加载
+yepjs.require(['jquery', 'jqUI.uicss', 'jqUI.main']);  // 三个模块会并行下载，并按顺序执行
 
 yepjs.define('test4', {
     ns: 'demo.logic',
@@ -218,8 +219,11 @@ yepjs.define('test4', {
 // demo/logic/test4.js
 
 // 在模块最顶部声明依赖
-yepjs.require(['jquery', 'jqUI.uicss', 'jqUI.main']);  // 三个模块会按顺序加载
-yepjs.require(['jquery', 'jqTree.*']); // 使用通配符写法
+yepjs.require(['jquery', 'jqUI.uicss', 'jqUI.main']);
+yepjs.require(['jquery', 'jqTree.treecss', 'jqTree.main']);
+
+// 但是建议还是用下面这种写法
+yepjs.require(['jquery', 'jqUI.uicss', 'jqUI.main', 'jqTree.treecss', 'jqTree.main']);
 
 yepjs.define('test4', {
     ns: 'demo.logic',
